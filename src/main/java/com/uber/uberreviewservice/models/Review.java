@@ -1,9 +1,6 @@
 package com.uber.uberreviewservice.models;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @ToString
@@ -13,7 +10,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "bookingreview")
+@Table(name = "booking_review")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Review extends BaseModel{
 
     @Column(nullable = false)

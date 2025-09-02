@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>ReviewService.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #b877db; font-style: italic;}
+.s1 { color: #b6c4f2;}
+.s2 { color: #b4c2f0;}
+.s3 { color: #7fdaff;}
+.s4 { color: #baacff;}
+.s5 { color: #64d1a9;}
+.s6 { color: #ff9668;}
+.s7 { color: #5c6e80;}
+</style>
+</head>
+<body bgcolor="#1c1e26">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ReviewService.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">uber</span><span class="s2">.</span><span class="s1">uberreviewservice</span><span class="s2">.</span><span class="s1">service</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">uber</span><span class="s2">.</span><span class="s1">uberreviewservice</span><span class="s2">.</span><span class="s1">models</span><span class="s2">.</span><span class="s1">Review</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">uber</span><span class="s2">.</span><span class="s1">uberreviewservice</span><span class="s2">.</span><span class="s1">repository</span><span class="s2">.</span><span class="s1">ReviewRepository</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">boot</span><span class="s2">.</span><span class="s1">CommandLineRunner</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">stereotype</span><span class="s2">.</span><span class="s1">Service</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Date</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+<span class="s1">@Service</span>
+<span class="s0">public class </span><span class="s1">ReviewService </span><span class="s0">implements </span><span class="s1">CommandLineRunner </span><span class="s3">{</span>
+    <span class="s0">private final </span><span class="s1">ReviewRepository reviewRepository</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">ReviewService</span><span class="s2">(</span><span class="s1">ReviewRepository reviewRepository</span><span class="s2">) </span><span class="s3">{</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">reviewRepository </span><span class="s4">= </span><span class="s1">reviewRepository</span><span class="s2">;</span>
+    <span class="s3">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">run</span><span class="s2">(</span><span class="s1">String... args</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">Exception </span><span class="s3">{</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;*******************&quot;</span><span class="s2">);</span>
+        <span class="s1">Review review </span><span class="s4">= </span><span class="s1">Review</span><span class="s2">.</span><span class="s1">builder</span><span class="s2">().</span><span class="s1">content</span><span class="s2">(</span><span class="s5">&quot;Best uber Rides&quot;</span><span class="s2">).</span><span class="s1">rating</span><span class="s2">(</span><span class="s6">4.8</span><span class="s2">).</span><span class="s1">build</span><span class="s2">();</span>
+        <span class="s1">reviewRepository</span><span class="s2">.</span><span class="s1">save</span><span class="s2">(</span><span class="s1">review</span><span class="s2">);</span>
+
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">review</span><span class="s2">);</span>
+
+        <span class="s1">List</span><span class="s4">&lt;</span><span class="s1">Review</span><span class="s4">&gt; </span><span class="s1">reviews </span><span class="s4">= </span><span class="s1">reviewRepository</span><span class="s2">.</span><span class="s1">findAll</span><span class="s2">();</span>
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">Review review1 </span><span class="s4">: </span><span class="s1">reviews</span><span class="s2">) </span><span class="s3">{</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">review1</span><span class="s2">.</span><span class="s1">getContent</span><span class="s2">() </span><span class="s4">+ </span><span class="s5">&quot; \n&quot; </span><span class="s4">+ </span><span class="s1">review1</span><span class="s2">.</span><span class="s1">getRating</span><span class="s2">());</span>
+        <span class="s3">}</span>
+
+<span class="s7">//        reviewRepository.deleteById(1L);</span>
+    <span class="s3">}</span>
+<span class="s3">}</span>
+</pre>
+</body>
+</html>
