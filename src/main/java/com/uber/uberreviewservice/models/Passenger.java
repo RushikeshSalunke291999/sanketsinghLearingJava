@@ -19,5 +19,6 @@ public class Passenger extends BaseModel {
     private String name;
 
     @OneToMany(mappedBy = "passenger")
+    @ToString.Exclude
     private List<Booking> bookings = new ArrayList<>();
 }
